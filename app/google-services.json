@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "989243117229",
+    "project_id": "rap-messaging",
+    "storage_bucket": "rap-messaging.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989243117229:android:097c9989d56caba077c024",
+        "android_client_info": {
+          "package_name": "com.example.rapmessaging"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "989243117229-72f81ggcr49mnnpq1brt91cqf0lc89ao.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9eU5nlr6XshxnwCUImMOFTEHhsvO9uaw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "989243117229-72f81ggcr49mnnpq1brt91cqf0lc89ao.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
