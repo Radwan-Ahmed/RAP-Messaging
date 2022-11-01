@@ -48,7 +48,9 @@
                 android:layout_gravity="center"
                 android:text="@string/add_image"
                 android:textColor="@color/secondary_text"
-                android:textSize="@dimen/_10ssp"/>
+                android:textSize="@dimen/_10ssp"
+                android:drawableTop="@drawable/ic_baseline_add_a_photo_24"
+                />
         </FrameLayout>
         <EditText
             android:id="@+id/inputName"
