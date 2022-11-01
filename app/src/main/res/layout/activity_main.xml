@@ -4,15 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".activities.MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_width="270dp"
+        android:layout_height="153dp"
+        android:text="Welcome to RAP Messaging"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.112"
+        android:gravity="center"
+        android:textSize="@dimen/_25sdp"
+        android:textColor="@color/primary"
+        android:textStyle="bold"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
