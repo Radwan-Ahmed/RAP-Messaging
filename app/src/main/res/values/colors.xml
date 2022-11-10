@@ -9,4 +9,8 @@
     <color name="icon_background">#20ffffff</color>
     <color name="error">#B00020</color>
     <color name="received_message_background">#090D16</color>
+    <color name="ash">#B8B7B7</color>
+    <color name="blue">#5EA8FF</color>
+    <color name="deepBlue">#0022FF</color>
+    <color name="black">#000000</color>
 </resources>

@@ -1,5 +1,8 @@
 package com.example.rapmessaging.activities;
 
+import android.app.Activity;
+import android.app.ActivityManager;
+import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -8,7 +11,9 @@ import android.util.Base64;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 
+import com.example.rapmessaging.R;
 import com.example.rapmessaging.databinding.ActivityMainBinding;
 import com.example.rapmessaging.utilities.Constants;
 import com.example.rapmessaging.utilities.PreferenceManager;
@@ -33,6 +38,43 @@ public class MainActivity extends AppCompatActivity {
         setListeners();
     }
 
+        /*chatListener();
+        callsListener();
+        peopleListener();
+
+        for chat,calls,people
+        binding.bottomNavigationView.setOnItemSelectedListener(item ->{
+            switch (item.getItemId()){
+                case R.id.chat:
+                    break;
+                case R.id.calls:
+                    break;
+                case R.id.people:
+                    break;
+            }
+            return true;
+        });
+    }
+     for change chat to calls to people
+    private  void chatListener(){
+        binding.bottomNavigationView.setOnClickListener(v ->
+                startActivity(new Intent(getApplicationContext(), chatActivity.class)));
+    }
+    private  void callsListener(){
+        binding.bottomNavigationView.setOnClickListener(v ->
+                startActivity(new Intent(getApplicationContext(), PeopleActivity.class)));
+    }
+    private  void peopleListener(){
+        binding.bottomNavigationView.setOnClickListener(v ->
+                startActivity(new Intent(getApplicationContext(), CallsActivity.class)));
+    } */
+
+    private void setListeners(){
+        binding.imageSignOut.setOnClickListener(v -> signOut());
+        binding.fabNewChat.setOnClickListener(v ->
+                startActivity(new Intent(getApplicationContext(), UsersActivity.class)));
+
+    }
     private void loadUserDetails(){
         binding.textName.setText(preferenceManager.getString(Constants.KEY_NAME));
         byte[] bytes = Base64.decode(preferenceManager.getString(Constants.KEY_IMAGE), Base64.DEFAULT);
@@ -47,9 +89,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseMessaging.getInstance().getToken().addOnSuccessListener(this::updateToken);
     }
 
-    private void setListeners(){
-        binding.imageSignOut.setOnClickListener(v -> signOut());
-    }
+
 
     private void updateToken(String token){
         FirebaseFirestore database = FirebaseFirestore.getInstance();
@@ -57,9 +97,9 @@ public class MainActivity extends AppCompatActivity {
                 database.collection(Constants.KEY_COLLECTION_USERS).document(
                         preferenceManager.getString(Constants.KEY_USER_ID)
                 );
-        documentReference.update(Constants.KEY_FCM_TOKEN, token)
-                .addOnSuccessListener(unused -> showToast("Token Updated Sucessfully"))
-                .addOnFailureListener(e -> showToast("Unable to update Token"));
+        documentReference.update(Constants.KEY_FCM_TOKEN, token);
+                /* .addOnSuccessListener(unused -> showToast("Token Updated sucessfully"))
+                .addOnFailureListener(e -> showToast("Unable to update Token")); */
     }
     private void signOut(){
         showToast("Signing Out");

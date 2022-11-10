@@ -10,4 +10,5 @@
     <string name="sign_up">Sign Up</string>
     <string name="login_to_continue">Login to Continue</string>
     <string name="welcome_back">Welcome Back!</string>
+    <string name="select_user">Select User</string>
 </resources>
