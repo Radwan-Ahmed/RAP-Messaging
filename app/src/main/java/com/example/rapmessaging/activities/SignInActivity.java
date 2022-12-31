@@ -56,7 +56,7 @@ public class SignInActivity extends AppCompatActivity {
                         showToast("Welcome RAPian");
                     }else {
                         loading(false);
-                        showToast("Unable to sign in");
+                        showToast("Check Email or Password!");
                     }
                 });
     }
