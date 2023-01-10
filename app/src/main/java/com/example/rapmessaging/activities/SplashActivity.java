@@ -9,7 +9,7 @@ import com.example.rapmessaging.R;
 import com.example.rapmessaging.databinding.ActivityMainBinding;
 
 public class SplashActivity extends AppCompatActivity {
-    ActivityMainBinding binding;
+    //ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,7 @@ public class SplashActivity extends AppCompatActivity {
         Thread thread = new Thread(){
             public void run(){
                 try{
-                    sleep(2000);
+                    sleep(1000);
                 }catch (Exception e){
                     e.printStackTrace();
 

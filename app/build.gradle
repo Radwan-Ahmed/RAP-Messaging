@@ -7,9 +7,11 @@ android {
     namespace 'com.example.rapmessaging'
     compileSdk 33
 
+
+
     defaultConfig {
         applicationId "com.example.rapmessaging"
-        minSdk 21
+        minSdk 23
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -40,9 +42,11 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:23.1.1'
     implementation 'com.google.firebase:firebase-analytics:21.2.0'
     implementation 'com.google.firebase:firebase-firestore:24.4.1'
+    implementation 'com.google.firebase:firebase-auth:21.1.0'
+    implementation 'com.google.firebase:firebase-installations:17.1.0'
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     //scalable size unit
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
@@ -55,4 +59,17 @@ dependencies {
     //Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
+
+    //swipe refresh layout
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+
+    implementation platform('com.google.firebase:firebase-bom:31.1.1')
+
+    //google login
+    implementation 'com.google.android.gms:play-services-auth:20.4.0'
+
+    //facebook
+    implementation 'com.facebook.android:facebook-android-sdk:latest.release'
+    // jitsi meet
+    implementation ('org.jitsi.react:jitsi-meet-sdk:7.0.1') { transitive = true }
 }

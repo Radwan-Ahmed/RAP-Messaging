@@ -4,19 +4,42 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.rapmessaging.R;
 import com.example.rapmessaging.databinding.ActivitySignInBinding;
 import com.example.rapmessaging.utilities.Constants;
 import com.example.rapmessaging.utilities.PreferenceManager;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Arrays;
 
 public class SignInActivity extends AppCompatActivity {
     private ActivitySignInBinding binding;
     private PreferenceManager preferenceManager;
+    //GoogleSignInOptions gso;
+    //GoogleSignInClient gsc;
+    //ImageView googleBtn;
+    //ImageView facebookBtn;
+   // CallbackManager callbackManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,7 +47,85 @@ public class SignInActivity extends AppCompatActivity {
         binding = ActivitySignInBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setListeners();
+    /*   // callbackManager = CallbackManager.Factory.create();
+        googleBtn = findViewById(R.id.google_btn);
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        gsc = GoogleSignIn.getClient(this, gso);
+        googleBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gSignIn();
+            }
+        }); */
+
+        //facebook
+
+/*
+        LoginManager.getInstance().registerCallback(callbackManager,
+                new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        startActivity(new Intent(SignInActivity.this, TestingActivity.class));
+                        finish();
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        // App code
+                    }
+
+                    @Override
+                    public void onError(FacebookException exception) {
+                        // App code
+                    }
+                }); */
+
+
+     /*   facebookBtn = findViewById(R.id.facebook_btn);
+        facebookBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginManager.getInstance().logInWithReadPermissions(SignInActivity.this, Arrays.asList("public_profile"));
+            }
+        }); */
+    }//end of on create
+
+   /* //facebook
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+    } */
+
+  /*  //google
+    void gSignIn(){
+        Intent signInIntent = gsc.getSignInIntent();
+        startActivityForResult(signInIntent, 1000);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1000){
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                task.getResult(ApiException.class);
+                navigateToSecondActivity();
+            }catch (ApiException e){
+                Toast.makeText(getApplicationContext(), "Something went Wrong", Toast.LENGTH_SHORT).show();
+
+            }
+        }
+    }
+
+    void navigateToSecondActivity(){
+        finish();
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
+    }
+//over google */
+
     private  void setListeners(){
         binding.textCreateNewAccount.setOnClickListener(v ->
                 startActivity(new Intent(getApplicationContext(), SignUpActivity.class)));
@@ -33,7 +134,7 @@ public class SignInActivity extends AppCompatActivity {
                         signIn();
                     }
                 });
-    }
+    }// end of setListeners().
 
     private void signIn(){
             loading(true);
@@ -59,9 +160,9 @@ public class SignInActivity extends AppCompatActivity {
                         showToast("Check Email or Password!");
                     }
                 });
-    }
+    }// end of signIn().
 
-    private void loading(Boolean isLoading){
+    private void loading(@NonNull Boolean isLoading){
         if(isLoading){
             binding.buttonSignIn.setVisibility(View.VISIBLE);
             binding.progressBar.setVisibility(View.INVISIBLE);
@@ -74,6 +175,7 @@ public class SignInActivity extends AppCompatActivity {
     private  void showToast(String message){
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
+    @NonNull
     private Boolean isValidSignInDetails(){
         if(binding.inputEmail.getText().toString().trim().isEmpty()){
             showToast("Enter Email: ");
@@ -87,6 +189,5 @@ public class SignInActivity extends AppCompatActivity {
         }else{
             return true;
         }
-    }
-
-    }
+    }// end of isValidSignInDetails()
+}//end of class

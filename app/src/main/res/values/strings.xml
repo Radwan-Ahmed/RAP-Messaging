@@ -13,4 +13,15 @@
     <string name="select_user">Select User</string>
     <string name="type_a_message">Message</string>
     <string name="online">Online</string>
+    <string name="or_sign_in_with">or sign in with</string>
+
+    //facebook string
+
+    <string name="facebook_app_id">1234</string>
+    <string name="fb_login_protocol_scheme">fb1234</string>
+    <string name="facebook_client_token">56789</string>
+    <string name="incoming_meeting_invitation">Incoming Call...</string>
+    <string name="sending_meeting_invitation">Calling...</string>
+
+
 </resources>

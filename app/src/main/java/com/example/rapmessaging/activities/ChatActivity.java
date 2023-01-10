@@ -8,6 +8,8 @@ import android.util.Base64;
 import android.view.View;
 
 
+import androidx.annotation.NonNull;
+
 import com.example.rapmessaging.adapters.ChatAdapter;
 import com.example.rapmessaging.databinding.ActivityChatBinding;
 import com.example.rapmessaging.models.ChatMessage;
@@ -173,6 +175,7 @@ public class ChatActivity extends BaseActivity {
         binding.layoutSend.setOnClickListener(v -> sendMessage());
     }
 
+    @NonNull
     private String getReadableDateTime(Date date){
         return new SimpleDateFormat("MMMM dd, yyyy - hh:mm a", Locale.getDefault()).format(date);
     }
@@ -226,4 +229,5 @@ public class ChatActivity extends BaseActivity {
         super.onResume();
         listenAvailabilityOfReceiver();
     }
+
 }

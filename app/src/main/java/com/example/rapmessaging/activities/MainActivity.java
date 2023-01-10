@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.Toast;
 
 
+
+
+
 import com.example.rapmessaging.adapters.RecentConversationsAdapter;
 import com.example.rapmessaging.databinding.ActivityMainBinding;
 import com.example.rapmessaging.listeners.ConversionListener;
@@ -36,6 +39,12 @@ public class MainActivity extends BaseActivity implements ConversionListener {
     private RecentConversationsAdapter conversationsAdapter;
     private FirebaseFirestore database;
 
+/*
+    ImageView imageProfile,imageSignOut;
+    TextView textName;
+    GoogleSignInOptions gso;
+    GoogleSignInClient gsc; */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +56,21 @@ public class MainActivity extends BaseActivity implements ConversionListener {
         getToken();
         setListeners();
         listenConversations();
-    }
+
+      /* //google
+        textName = findViewById(R.id.textName);
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+        gsc = GoogleSignIn.getClient(this,gso);
+        GoogleSignInAccount gAccount = GoogleSignIn.getLastSignedInAccount(this);
+
+        if (gAccount!=null){
+            String text_Name = gAccount.getDisplayName();
+
+            textName.setText(text_Name);
+
+        } */
+
+    }//end of onCreate
 
     private void init(){
         conversations = new ArrayList<>();
@@ -89,10 +112,23 @@ public class MainActivity extends BaseActivity implements ConversionListener {
 
     private void setListeners(){
         binding.imageSignOut.setOnClickListener(v -> signOut());
+       // binding.imageSignOut.setOnClickListener(v -> gSignOut());
         binding.fabNewChat.setOnClickListener(v ->
                 startActivity(new Intent(getApplicationContext(), UsersActivity.class)));
 
     }
+    /*
+//google sign out
+    private void gSignOut() {
+        gsc.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                finish();
+                startActivity(new Intent(MainActivity.this, SignInActivity.class));
+            }
+        });
+    } */
+
     private void loadUserDetails(){
         binding.textName.setText(preferenceManager.getString(Constants.KEY_NAME));
         byte[] bytes = Base64.decode(preferenceManager.getString(Constants.KEY_IMAGE), Base64.DEFAULT);
@@ -196,4 +232,5 @@ public class MainActivity extends BaseActivity implements ConversionListener {
         intent.putExtra(Constants.KEY_USER, user);
         startActivity(intent);
     }
+
 }

@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.rapmessaging.databinding.ActivitySignUpBinding;
@@ -83,7 +84,7 @@ public class SignUpActivity extends AppCompatActivity {
                 });
     }
 
-    private  String encodeImage(Bitmap bitmap){
+    private  String encodeImage(@NonNull Bitmap bitmap){
         int previewWidth = 150;
         int previewHeight = bitmap.getHeight() * previewWidth / bitmap.getWidth();
         Bitmap previewBitmap = Bitmap.createScaledBitmap(bitmap, previewHeight, previewHeight, false);
@@ -114,6 +115,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
     );
 
+    @NonNull
     private Boolean isValidSignUpDetails(){
         if(encodedImage == null){
             showToast("Select Profile Image");

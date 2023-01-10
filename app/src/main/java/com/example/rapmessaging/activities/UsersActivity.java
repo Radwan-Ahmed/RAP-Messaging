@@ -4,8 +4,10 @@ package com.example.rapmessaging.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
-import com.example.rapmessaging.R;
+import androidx.annotation.NonNull;
+
 import com.example.rapmessaging.adapters.UserAdapter;
 import com.example.rapmessaging.databinding.ActivityUsersBinding;
 import com.example.rapmessaging.listeners.UserListener;
@@ -77,7 +79,7 @@ public class UsersActivity extends BaseActivity implements UserListener {
         binding.textErrorMessage.setVisibility(View.VISIBLE);
     }
 
-    private void loading(Boolean isLoading){
+    private void loading(@NonNull Boolean isLoading){
         if(isLoading){
             binding.progressBar.setVisibility(View.VISIBLE);
         }else {
@@ -91,5 +93,38 @@ public class UsersActivity extends BaseActivity implements UserListener {
         intent.putExtra(Constants.KEY_USER, user);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void initiateAudioMeeting(@NonNull User user) {
+        if (user.token==null || user.token.trim().isEmpty()){
+            Toast.makeText(
+                    this,
+                    user.name + " is not Available",
+                    Toast.LENGTH_SHORT
+            ).show();
+        }else {
+            Intent intent = new Intent(getApplicationContext(), OutgoingInvitationActivity.class);
+            intent.putExtra("user", user);
+            intent.putExtra("type", "audio");
+            startActivity(intent);
+        }
+    }
+
+    @Override
+    public void initiateVideoMeeting(@NonNull User user) {
+        if (user.token==null || user.token.trim().isEmpty()){
+            Toast.makeText(
+                    this,
+                    user.name + " is not Available",
+                    Toast.LENGTH_SHORT
+            ).show();
+        }else {
+            Intent intent = new Intent(getApplicationContext(), OutgoingInvitationActivity.class);
+            intent.putExtra("user", user);
+            intent.putExtra("type", "video");
+            startActivity(intent);
+        }
+
     }
 }
