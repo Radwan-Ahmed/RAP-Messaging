@@ -121,7 +121,7 @@ public class IncomingInvitationActivity extends AppCompatActivity {
                             finish();
                         }
                     }else {
-                       // Toast.makeText(IncomingInvitationActivity.this, "invitation rejected", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(IncomingInvitationActivity.this, "invitation rejected", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 }else {
@@ -145,7 +145,7 @@ public class IncomingInvitationActivity extends AppCompatActivity {
             String type = intent.getStringExtra(Constants.REMOTE_MSG_INVITATION_RESPONSE);
             if (type != null){
                 if (type.equals(Constants.REMOTE_MSG_INVITATION_CANCELLED)){
-                   // Toast.makeText(context, "Invitation cancelled", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Invitation cancelled", Toast.LENGTH_SHORT).show();
                     finish();
                 }
             }

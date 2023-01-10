@@ -20,6 +20,7 @@ import com.example.rapmessaging.network.ApiService;
 import com.example.rapmessaging.utilities.Constants;
 import com.example.rapmessaging.utilities.PreferenceManager;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.messaging.FirebaseMessagingService;
 
 import org.jitsi.meet.sdk.JitsiMeetActivity;
 import org.jitsi.meet.sdk.JitsiMeetConferenceOptions;
@@ -76,6 +77,7 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
                 cancelInvitation(user.token);
             }
         });
+
         FirebaseMessaging.getInstance().getToken().addOnCompleteListener(task -> {
             if (task.isSuccessful() && task.getResult() != null){
                 inviterToken = task.getResult();
@@ -130,9 +132,9 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
             public void onResponse( @NonNull Call<String> call,@NonNull Response<String> response) {
                 if (response.isSuccessful()){
                     if (type.equals(Constants.REMOTE_MSG_INVITATION)){
-                        //Toast.makeText(OutgoingInvitationActivity.this, "invitation send successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(OutgoingInvitationActivity.this, "invitation send successfully", Toast.LENGTH_SHORT).show();
                     }else if (type.equals(Constants.REMOTE_MSG_INVITATION_RESPONSE)){
-                       // Toast.makeText(OutgoingInvitationActivity.this, "Invitation cancelled", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(OutgoingInvitationActivity.this, "Invitation cancelled", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 }else {
@@ -174,7 +176,7 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
 
     private BroadcastReceiver invitationResponseReceiver = new BroadcastReceiver() {
         @Override
-        public void onReceive(Context context, @NonNull Intent intent) {
+        public void onReceive(Context context, Intent intent) {
             String type = intent.getStringExtra(Constants.REMOTE_MSG_INVITATION_RESPONSE);
             if (type != null){
                 if (type.equals(Constants.REMOTE_MSG_INVITATION_ACCEPTED)){
@@ -187,8 +189,6 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
                                 if (meetingType.equals("audio")){
                                     builder.setVideoMuted(true);
                                 }
-
-
                                 JitsiMeetActivity.launch(OutgoingInvitationActivity.this, builder.build());
                                 finish();
                             }catch (Exception exception){
@@ -196,7 +196,7 @@ public class OutgoingInvitationActivity extends AppCompatActivity {
                                 finish();
                             }
                 }else if (type.equals(Constants.REMOTE_MSG_INVITATION_REJECTED)){
-                    //Toast.makeText(context, "Invitation Rejected", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Invitation Rejected", Toast.LENGTH_SHORT).show();
                     finish();
                 }
             }
