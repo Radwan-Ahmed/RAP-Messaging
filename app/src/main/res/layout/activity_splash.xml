@@ -7,6 +7,26 @@
     android:background="@color/black"
     tools:context=".activities.SplashActivity">
 
+    <com.jetradarmobile.snowfall.SnowfallView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.jetradarmobile.snowfall.SnowfallView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:snowflakesNum="250"
+        app:snowflakeAlphaMin="150"
+        app:snowflakeAlphaMax="255"
+        app:snowflakeAngleMax="5"
+        app:snowflakeSizeMin="8dp"
+        app:snowflakeSizeMax="20dp"
+        app:snowflakeSpeedMin="15"
+        app:snowflakeSpeedMax="40"
+        app:snowflakesFadingEnabled="true"
+        app:snowflakesAlreadyFalling="false"
+
+        />
+
     <TextView
         android:id="@+id/textAddImage"
         android:layout_width="match_parent"

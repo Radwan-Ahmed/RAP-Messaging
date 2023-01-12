@@ -127,6 +127,8 @@ public class ChatActivity extends BaseActivity {
     private void showToast(String message){
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
+
+    //invalidRegistration problem lies here...
     private void sendNotification(String messageBody){
         ApiClient.getClient().create(ApiService.class).sendMessage(
                 Constants.getRemoteMessageHeaders(),
@@ -141,14 +143,15 @@ public class ChatActivity extends BaseActivity {
                             JSONArray results = responseJson.getJSONArray("results");
                             if (responseJson.getInt("failure")==1){
                                 JSONObject error = (JSONObject) results.get(0);
-                                showToast(error.getString("error"));
+                                // this is it ... For this toast atLeast 2 days lost from my life...
+                                //showToast(error.getString("error"));
                                 return;
                             }
                         }
                     }catch (JSONException e){
                         e.printStackTrace();
                     }
-                    showToast("Notification sent Successfully");
+                     showToast("Notification sent Successfully");
                 }else {
                     showToast("Error: " + response.code());
                 }

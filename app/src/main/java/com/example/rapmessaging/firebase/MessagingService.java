@@ -1,12 +1,10 @@
 package com.example.rapmessaging.firebase;
 
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Build;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
@@ -20,8 +18,6 @@ import com.example.rapmessaging.models.User;
 import com.example.rapmessaging.utilities.Constants;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-
-import java.util.Objects;
 import java.util.Random;
 
 public class MessagingService extends FirebaseMessagingService {
@@ -72,8 +68,6 @@ public class MessagingService extends FirebaseMessagingService {
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
         notificationManagerCompat.notify(notificationId, builder.build());
-
-
 
 
         //audio video meeting
